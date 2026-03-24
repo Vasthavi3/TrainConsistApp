@@ -36,7 +36,7 @@ public class TrainConsistApp {
         System.out.println("\nUnique Bogie IDs:");
         System.out.println(bogieIds);
 
-        // ✅ UC4
+        // ✅ UC4 (LinkedList)
         LinkedList<String> train = new LinkedList<>();
         train.add("Engine");
         train.add("Sleeper");
@@ -51,21 +51,34 @@ public class TrainConsistApp {
         System.out.println("\nFinal Train Consist:");
         System.out.println(train);
 
-        // 🔥 ================= UC5 =================
-
+        // ✅ UC5
         LinkedHashSet<String> formation = new LinkedHashSet<>();
-
-        // Add bogies
         formation.add("Engine");
         formation.add("Sleeper");
         formation.add("Cargo");
         formation.add("Guard");
+        formation.add("Sleeper"); // duplicate
 
-        // Add duplicate
-        formation.add("Sleeper"); // ignored automatically
-
-        // Display formation
         System.out.println("\nTrain Formation (LinkedHashSet):");
         System.out.println(formation);
+
+        // 🔥 ================= UC6 =================
+
+        // Create HashMap
+        HashMap<String, Integer> capacityMap = new HashMap<>();
+
+        // Add bogie → capacity
+        capacityMap.put("Sleeper", 72);
+        capacityMap.put("AC Chair", 60);
+        capacityMap.put("First Class", 24);
+
+        // Display map
+        System.out.println("\nBogie Capacity Mapping:");
+
+        for (Map.Entry<String, Integer> entry : capacityMap.entrySet()) {
+            System.out.println(
+                entry.getKey() + " -> Capacity: " + entry.getValue()
+            );
+        }
     }
 }

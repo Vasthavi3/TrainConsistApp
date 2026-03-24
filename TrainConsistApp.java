@@ -31,34 +31,41 @@ public class TrainConsistApp {
         bogieIds.add("B1");
         bogieIds.add("B2");
         bogieIds.add("B3");
-        bogieIds.add("B1"); // duplicate
+        bogieIds.add("B1");
 
         System.out.println("\nUnique Bogie IDs:");
         System.out.println(bogieIds);
 
-        // 🔥 ================= UC4 =================
-
+        // ✅ UC4
         LinkedList<String> train = new LinkedList<>();
-
-        // Add bogies
         train.add("Engine");
         train.add("Sleeper");
         train.add("AC");
         train.add("Cargo");
         train.add("Guard");
 
-        System.out.println("\nInitial Train:");
-        System.out.println(train);
-
-        // Insert Pantry Car at index 2
         train.add(2, "Pantry");
-
-        // Remove first and last bogie
         train.removeFirst();
         train.removeLast();
 
-        // Final consist
         System.out.println("\nFinal Train Consist:");
         System.out.println(train);
+
+        // 🔥 ================= UC5 =================
+
+        LinkedHashSet<String> formation = new LinkedHashSet<>();
+
+        // Add bogies
+        formation.add("Engine");
+        formation.add("Sleeper");
+        formation.add("Cargo");
+        formation.add("Guard");
+
+        // Add duplicate
+        formation.add("Sleeper"); // ignored automatically
+
+        // Display formation
+        System.out.println("\nTrain Formation (LinkedHashSet):");
+        System.out.println(formation);
     }
 }

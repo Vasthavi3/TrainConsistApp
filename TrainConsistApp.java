@@ -4,12 +4,14 @@ public class TrainConsistApp {
 
     public static void main(String[] args) {
 
-        // ✅ UC1
+        // ================= UC1 =================
         System.out.println("=== Train Consist Management App ===");
+
         List<String> bogies = new ArrayList<>();
         System.out.println("Initial Bogie Count: " + bogies.size());
 
-        // ✅ UC2
+
+        // ================= UC2 =================
         bogies.add("Sleeper");
         bogies.add("AC Chair");
         bogies.add("First Class");
@@ -26,18 +28,22 @@ public class TrainConsistApp {
         System.out.println("\nFinal Bogie List:");
         System.out.println(bogies);
 
-        // ✅ UC3
+
+        // ================= UC3 =================
         Set<String> bogieIds = new HashSet<>();
+
         bogieIds.add("B1");
         bogieIds.add("B2");
         bogieIds.add("B3");
-        bogieIds.add("B1");
+        bogieIds.add("B1"); // duplicate
 
         System.out.println("\nUnique Bogie IDs:");
         System.out.println(bogieIds);
 
-        // ✅ UC4 (LinkedList)
+
+        // ================= UC4 =================
         LinkedList<String> train = new LinkedList<>();
+
         train.add("Engine");
         train.add("Sleeper");
         train.add("AC");
@@ -45,14 +51,17 @@ public class TrainConsistApp {
         train.add("Guard");
 
         train.add(2, "Pantry");
+
         train.removeFirst();
         train.removeLast();
 
         System.out.println("\nFinal Train Consist:");
         System.out.println(train);
 
-        // ✅ UC5
+
+        // ================= UC5 =================
         LinkedHashSet<String> formation = new LinkedHashSet<>();
+
         formation.add("Engine");
         formation.add("Sleeper");
         formation.add("Cargo");
@@ -62,23 +71,34 @@ public class TrainConsistApp {
         System.out.println("\nTrain Formation (LinkedHashSet):");
         System.out.println(formation);
 
-        // 🔥 ================= UC6 =================
 
-        // Create HashMap
+        // ================= UC6 =================
         HashMap<String, Integer> capacityMap = new HashMap<>();
 
-        // Add bogie → capacity
         capacityMap.put("Sleeper", 72);
         capacityMap.put("AC Chair", 60);
         capacityMap.put("First Class", 24);
 
-        // Display map
         System.out.println("\nBogie Capacity Mapping:");
 
         for (Map.Entry<String, Integer> entry : capacityMap.entrySet()) {
-            System.out.println(
-                entry.getKey() + " -> Capacity: " + entry.getValue()
-            );
+            System.out.println(entry.getKey() + " -> Capacity: " + entry.getValue());
+        }
+
+
+        // ================= UC7 =================
+        List<Bogie> bogieList = new ArrayList<>();
+
+        bogieList.add(new Bogie("Sleeper", 72));
+        bogieList.add(new Bogie("AC Chair", 60));
+        bogieList.add(new Bogie("First Class", 24));
+
+        // Sort using Comparator (by capacity)
+        bogieList.sort(Comparator.comparingInt(b -> b.capacity));
+
+        System.out.println("\nBogies Sorted by Capacity:");
+        for (Bogie b : bogieList) {
+            System.out.println(b);
         }
     }
 }

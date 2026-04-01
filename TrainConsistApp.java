@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.regex.*;
 import java.util.stream.Collectors;
 
 public class TrainConsistApp {
@@ -137,5 +138,33 @@ public class TrainConsistApp {
 
         System.out.println("\nTotal Seating Capacity of Train:");
         System.out.println(totalSeats);
+
+
+        // ================= UC11 =================
+        String trainId = "TRN-1234";
+        String cargoCode = "PET-AB";
+
+        String trainPattern = "TRN-\\d{4}";
+        String cargoPattern = "PET-[A-Z]{2}";
+
+        Pattern trainRegex = Pattern.compile(trainPattern);
+        Pattern cargoRegex = Pattern.compile(cargoPattern);
+
+        Matcher trainMatcher = trainRegex.matcher(trainId);
+        Matcher cargoMatcher = cargoRegex.matcher(cargoCode);
+
+        System.out.println("\nTrain ID Validation:");
+        if (trainMatcher.matches()) {
+            System.out.println(trainId + " is VALID");
+        } else {
+            System.out.println(trainId + " is INVALID");
+        }
+
+        System.out.println("\nCargo Code Validation:");
+        if (cargoMatcher.matches()) {
+            System.out.println(cargoCode + " is VALID");
+        } else {
+            System.out.println(cargoCode + " is INVALID");
+        }
     }
 }

@@ -66,7 +66,7 @@ public class TrainConsistApp {
         formation.add("Sleeper");
         formation.add("Cargo");
         formation.add("Guard");
-        formation.add("Sleeper"); // duplicate
+        formation.add("Sleeper"); // duplicate ignored
 
         System.out.println("\nTrain Formation (LinkedHashSet):");
         System.out.println(formation);
@@ -93,11 +93,22 @@ public class TrainConsistApp {
         bogieList.add(new Bogie("AC Chair", 60));
         bogieList.add(new Bogie("First Class", 24));
 
-        // Sort using Comparator (by capacity)
+        // Sort using Comparator
         bogieList.sort(Comparator.comparingInt(b -> b.capacity));
 
         System.out.println("\nBogies Sorted by Capacity:");
         for (Bogie b : bogieList) {
+            System.out.println(b);
+        }
+
+
+        // ================= UC8 =================
+        List<Bogie> filteredBogies = bogieList.stream()
+                .filter(b -> b.capacity > 60)
+                .toList();
+
+        System.out.println("\nFiltered Bogies (Capacity > 60):");
+        for (Bogie b : filteredBogies) {
             System.out.println(b);
         }
     }

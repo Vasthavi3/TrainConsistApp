@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class TrainConsistApp {
 
@@ -35,7 +36,7 @@ public class TrainConsistApp {
         bogieIds.add("B1");
         bogieIds.add("B2");
         bogieIds.add("B3");
-        bogieIds.add("B1"); // duplicate
+        bogieIds.add("B1");
 
         System.out.println("\nUnique Bogie IDs:");
         System.out.println(bogieIds);
@@ -66,7 +67,7 @@ public class TrainConsistApp {
         formation.add("Sleeper");
         formation.add("Cargo");
         formation.add("Guard");
-        formation.add("Sleeper"); // duplicate ignored
+        formation.add("Sleeper");
 
         System.out.println("\nTrain Formation (LinkedHashSet):");
         System.out.println(formation);
@@ -89,11 +90,11 @@ public class TrainConsistApp {
         // ================= UC7 =================
         List<Bogie> bogieList = new ArrayList<>();
 
-        bogieList.add(new Bogie("Sleeper", 72));
-        bogieList.add(new Bogie("AC Chair", 60));
-        bogieList.add(new Bogie("First Class", 24));
+        bogieList.add(new Bogie("Sleeper", 72, "Passenger"));
+        bogieList.add(new Bogie("AC Chair", 60, "Passenger"));
+        bogieList.add(new Bogie("First Class", 24, "Passenger"));
+        bogieList.add(new Bogie("Cargo", 100, "Goods"));
 
-        // Sort using Comparator
         bogieList.sort(Comparator.comparingInt(b -> b.capacity));
 
         System.out.println("\nBogies Sorted by Capacity:");
@@ -110,6 +111,22 @@ public class TrainConsistApp {
         System.out.println("\nFiltered Bogies (Capacity > 60):");
         for (Bogie b : filteredBogies) {
             System.out.println(b);
+        }
+
+
+        // ================= UC9 =================
+        Map<String, List<Bogie>> groupedBogies =
+                bogieList.stream()
+                        .collect(Collectors.groupingBy(b -> b.type));
+
+        System.out.println("\nGrouped Bogies by Type:");
+
+        for (Map.Entry<String, List<Bogie>> entry : groupedBogies.entrySet()) {
+            System.out.println(entry.getKey() + ":");
+
+            for (Bogie b : entry.getValue()) {
+                System.out.println("  " + b);
+            }
         }
     }
 }

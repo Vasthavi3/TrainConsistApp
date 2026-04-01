@@ -2,14 +2,16 @@ public class Bogie {
 
     String name;
     int capacity;
+    String type; // NEW FIELD
 
-    public Bogie(String name, int capacity) {
+    public Bogie(String name, int capacity, String type) {
         this.name = name;
         this.capacity = capacity;
+        this.type = type;
     }
 
     @Override
     public String toString() {
-        return name + " -> Capacity: " + capacity;
+        return name + " (" + type + ") -> Capacity: " + capacity;
     }
 }

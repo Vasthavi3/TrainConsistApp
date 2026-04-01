@@ -2,7 +2,7 @@ public class Bogie {
 
     String name;
     int capacity;
-    String type; // NEW FIELD
+    String type;
 
     public Bogie(String name, int capacity, String type) {
         this.name = name;

@@ -128,5 +128,14 @@ public class TrainConsistApp {
                 System.out.println("  " + b);
             }
         }
+
+
+        // ================= UC10 =================
+        int totalSeats = bogieList.stream()
+                .map(b -> b.capacity)
+                .reduce(0, Integer::sum);
+
+        System.out.println("\nTotal Seating Capacity of Train:");
+        System.out.println(totalSeats);
     }
 }
